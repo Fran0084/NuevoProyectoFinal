@@ -1,0 +1,54 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+
+.carrito{
+    margin-bottom: 25px;
+    margin-left: 15px;
+}
+
+.product-image{
+width: 150px;
+height: 150px;
+margin-top: 25px;
+margin-left: 15px;
+}
+
+.nav{
+    background-color: lightcoral;
+    border-bottom: 15px, solid, black;
+    margin-left: 2px;
+    border-radius: 3px;
+}
+
+
+/* .header{
+    border-bottom: 2.5px solid lightgreen;
+} */
+
+
+.inicioSesion{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 15px;
+}
+
+
+.seleccionProductos{
+    margin-bottom: 50px;
+    margin-left: 15px;
+}
+
+
+.registro{
+    margin-bottom: 50px;
+    margin-left: 15px;
+}
+
+.storage{
+    margin-bottom: 150px;
+}
