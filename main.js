@@ -32,9 +32,10 @@ function verificarUsuario() {
     let contrasena = document.getElementById("contrasena").value;
 
     if (nombreUsuario === "Francisco" && contrasena === "Pass") {
-        alert("Bienvenido Fran");
+        Swal.fire("Bienvenido Fran");;
+
     } else {
-        alert('Usuario incorrecto. Inténtalo nuevamente.');
+        Swal.fire('Usuario incorrecto. Inténtalo nuevamente.');
     }
 }
 
@@ -124,9 +125,15 @@ selectProductos.addEventListener("change", function() {
 
 // Event listener para el botón "Agregar al Carrito"
 agregarCarritoButton.addEventListener('click', function() {
-    var nombre = nombreProducto.textContent;
-    var precio = parseFloat(precioProducto.textContent);
-    alert('Producto agregado al carrito\nNombre: ' + nombre + '\nPrecio: $' + precio.toFixed(2));
+    let nombre = nombreProducto.textContent;
+    let precio = parseFloat(precioProducto.textContent);
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: 'Producto agregado al carrito\nNombre: ' + nombre + '\nPrecio: $' + precio.toFixed(2),
+        showConfirmButton: false,
+        timer: 1500
+      });
 });
 
 
