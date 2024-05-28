@@ -1,43 +1,99 @@
-// let idPassword = 123456;
-// let nombreDeUsuario= "Francisco"
-// let contraseñaPedida=prompt("ingrese su contraseña");
-
-// if (contraseñaPedida == idPassword){
-//     alert(`Bienvenido ${nombreDeUsuario}`)
-
-// }
-
-//  else if (contraseñaPedida != idPassword){
-//     alert ("contraseña incorrecta - Le quedan 2 intentos")
-
-//  contraseñaPedida=prompt("Ingrese su contraseña")
-// }
-
-//  if(contraseñaPedida != idPassword){
-//     alert ("contraseña incorrecta - Le queda 1 intento")
-
-//     contraseñaPedida= prompt("ingrese su contraseña")
-// }
-
-// else{
-//     alert("no puede ")
-// }
 
 
+let intentos = 3;
 
+function login() {
+    let nombreUsuarioInput = document.getElementById('username');
+    let contraseñaInput = document.getElementById('password');
+    let userName = nombreUsuarioInput.value;
+    let password = contraseñaInput.value;
 
-
-function verificarUsuario() {
-    let nombreUsuario = document.getElementById("nombre").value;
-    let contrasena = document.getElementById("contrasena").value;
-
-    if (nombreUsuario === "Francisco" && contrasena === "Pass") {
-        Swal.fire("Bienvenido Fran");;
-
+    if (userName === 'Francisco' && password === 'Pass') {
+        alert(`Bienvenido ${userName}`);
     } else {
-        Swal.fire('Usuario incorrecto. Inténtalo nuevamente.');
+        intentos--;
+        if (intentos > 0) {
+            alert(`Usuario o contraseña incorrectos. Te quedan ${intentos} intentos.`);
+        } else {
+            alert('Has agotado tus intentos. Inténtalo de nuevo más tarde.');
+            usernameInput.disabled = true;
+            passwordInput.disabled = true;
+        }
+        // Actualizar y vaciar los campos
+        nombreUsuarioInput.value = '';
+        contraseñaInput.value = '';
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -52,33 +108,33 @@ let precioUnitario = 10;
 
 
 // Event listeners para los botones
-restarButton.addEventListener("click", function() {
+restarButton.addEventListener("click", function () {
     if (cantidad > 1) {
         cantidad--;
         actualizarCantidad();
     }
 });
 
-sumarButton.addEventListener("click", function() {
+sumarButton.addEventListener("click", function () {
     cantidad++;
     actualizarCantidad();
 });
 
-finalizarButton.addEventListener("click", function() {
+finalizarButton.addEventListener("click", function () {
     let totalCompra = cantidad * precioUnitario;
     Swal.fire({
         title: "Gracias por su compra!",
         text: `El total de su compra es de $${totalCompra}`,
         icon: "success"
-      });
-    
+    });
+
 });
 
 // Función para actualizar la cantidad mostrada
 function actualizarCantidad() {
-    cantidadProducto.textContent = cantidad;
+    cantidadProducto.innerText = cantidad;
     let total = cantidad * precioUnitario;
-    precioTotalProducto.textContent = total;
+    precioTotalProducto.innerText = total;
 }
 
 
@@ -96,14 +152,28 @@ function actualizarCantidad() {
 
 
 
+
+
+
+// Variables
+const ivaPorcentaje = 0.21;
+let totalCompra = 0;
+
+// Función para calcular el total con IVA
+function calcularTotalConIVA(precio) {
+    let total = precio + (precio * ivaPorcentaje);
+    return total;
+}
+
+// Elementos del DOM
 let selectProductos = document.getElementById("productos");
 let nombreProducto = document.getElementById("nombreProducto");
 let precioProducto = document.getElementById("precioProducto");
 let agregarCarritoButton = document.getElementById("agregarCarrito");
 
 // Event listener para el cambio de selección
-selectProductos.addEventListener("change", function() {
-    var productoSeleccionado = selectProductos.value;
+selectProductos.addEventListener("change", function () {
+    let productoSeleccionado = selectProductos.value;
     switch (productoSeleccionado) {
         case 'papasFritas':
             nombreProducto.textContent = 'Papas Fritas';
@@ -124,20 +194,32 @@ selectProductos.addEventListener("change", function() {
 });
 
 // Event listener para el botón "Agregar al Carrito"
-agregarCarritoButton.addEventListener('click', function() {
+agregarCarritoButton.addEventListener('click', function () {
     let nombre = nombreProducto.textContent;
     let precio = parseFloat(precioProducto.textContent);
+    let precioConIVA = calcularTotalConIVA(precio);
+
+    totalCompra += precioConIVA;
+
     Swal.fire({
         position: "top-end",
         icon: "success",
-        title: 'Producto agregado al carrito\nNombre: ' + nombre + '\nPrecio: $' + precio.toFixed(2),
+        title: 'Producto agregado al carrito\nNombre: ' + nombre + '\nPrecio: $' + precio.toFixed(2) + '\nIVA (21%): $' + (precio * ivaPorcentaje).toFixed(2) + `\nTotal compra: ${precioConIVA}`,
         showConfirmButton: false,
         timer: 1500
-      });
+    });
 });
 
-
-
+// // Event listener para el botón "Finalizar Compra"
+// finalizarCompraButton.addEventListener('click', function () {
+//     Swal.fire({
+//         title: 'Total de la compra',
+//         text: 'El total de la compra, incluyendo el 21% de IVA, es: $' + totalCompra.toFixed(2),
+//         icon: 'info',
+//         showCancelButton: false,
+//         confirmButtonText: 'Cerrar'
+//     });
+// });
 
 
 
@@ -148,7 +230,7 @@ agregarCarritoButton.addEventListener('click', function() {
 
 
 // Objeto para almacenar los datos del formulario
-const usuario = {
+let usuario = {
     _nombre: "",
     _apellido: "",
     _email: "",
@@ -187,20 +269,20 @@ const usuario = {
 // Event listener para el envío del formulario
 document.getElementById('formulario');
 
-    // Obtener los valores ingresados por el usuario
-    const nombreIngresado = document.getElementById('nombre').value;
-    const apellidoIngresado = document.getElementById('apellido').value;
-    const emailIngresado = document.getElementById('email').value;
+// Obtener los valores ingresados por el usuario
+let nombreIngresado = document.getElementById('nombre').value;
+let apellidoIngresado = document.getElementById('apellido').value;
+let emailIngresado = document.getElementById('email').value;
 
-    // Asignar los valores al objeto "usuario"
-    usuario.nombre = nombreIngresado;
-    usuario.apellido = apellidoIngresado;
-    usuario.email = emailIngresado;
-
-
+// Asignar los valores al objeto "usuario"
+usuario.nombre = nombreIngresado;
+usuario.apellido = apellidoIngresado;
+usuario.email = emailIngresado;
 
 
-//GENERAR UN CODIGO DE DESCUENTO CON LA MATH.RANDOM
+
+
+// //GENERAR UN CODIGO DE DESCUENTO CON LA MATH.RANDOM
 
 
 
@@ -208,17 +290,72 @@ let botonDescuento = document.querySelector("#generarDescuento");
 botonDescuento.addEventListener("click", mostrarCodigo);
 
 
-function mostrarCodigo(){
+function mostrarCodigo() {
     let generarCodigoDescuento = () => {
-        let codigo = Math.floor(Math.random() *10000);
-      
+        let codigo = Math.floor(Math.random() * 10000);
+
         return codigo;
-      }
-      
-      let codigoDescuento = generarCodigoDescuento();
-      
-      alert(`Su codigo de descuento es: DESC${codigoDescuento}`)
+    }
+
+    let codigoDescuento = generarCodigoDescuento();
+
+    alert(`Su codigo de descuento es: DESC${codigoDescuento}`)
 
 }
+
+
+
+
+// caja de comentarios
+
+// Función para obtener los comentarios desde localStorage
+function getComments() {
+    return JSON.parse(localStorage.getItem('comments')) || [];
+}
+
+// Función para guardar los comentarios en localStorage
+function saveComment(comment) {
+    let comments = getComments();
+    comments.push(comment);
+    localStorage.setItem('comments', JSON.stringify(comments));
+}
+
+// Función para mostrar los comentarios en la página
+function displayComments() {
+    let comments = getComments();
+    let commentsContainer = document.getElementById('comments');
+
+    commentsContainer.innerHTML = '';
+
+    comments.forEach(comment => {
+        let commentElement = document.createElement('div');
+        commentElement.innerHTML = `${comment.name}: ${comment.text}`;
+        commentsContainer.appendChild(commentElement);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    displayComments();
+
+    let commentForm = document.getElementById('commentForm');
+    
+    commentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let name = document.getElementById('name').value;
+        let text = document.getElementById('text').value;
+
+        if (name && text) {
+            let newComment = { name, text };
+            saveComment(newComment);
+            displayComments();
+
+            document.getElementById('name').value = '';
+            document.getElementById('text').value = '';
+        } else {
+            alert('Por favor, completa todos los campos para dejar un comentario.');
+        }
+    });
+});
 
 
