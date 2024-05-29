@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
     <title>Carrito de Compras</title>
-    <style>
-        /* Estilos para la imagen del producto */
-        .product-image {
-            max-width: 100px;
-            max-height: 100px;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -26,6 +20,23 @@
         </nav>
     </header>
 
+
+
+    <div class="registro">
+        <h1>Registro de Usuario</h1>
+        <form id="formulario">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br>
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required><br>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
 
     <div class="inicioSesion">
         <h1>Inicio Sesion</h1>
@@ -77,21 +88,7 @@
 
 
 
-    <div class="registro">
-        <h1>Registro de Usuario</h1>
-        <form id="formulario">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br>
 
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" required><br>
-
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required><br>
-
-            <input type="submit" value="Enviar">
-        </form>
-    </div>
 
     <div>
         <button id="generarDescuento">Codigo Descuento</button>

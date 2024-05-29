@@ -9,13 +9,43 @@ function login() {
     let password = contraseñaInput.value;
 
     if (userName === 'Francisco' && password === 'Pass') {
-        alert(`Bienvenido ${userName}`);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-start",
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: `Bienvenido ${userName}`
+          });
+        
+        
+      
     } else {
         intentos--;
         if (intentos > 0) {
-            alert(`Usuario o contraseña incorrectos. Te quedan ${intentos} intentos.`);
+            Swal.fire({
+                icon: "Error",
+                title: "Oops...",
+                text: `Usuario o contraseña incorrectos. Te quedan ${intentos} intentos.`,
+               
+              });
+           
         } else {
-            alert('Has agotado tus intentos. Inténtalo de nuevo más tarde.');
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Demasiados intentos fallidos",
+              text: "Intenta mas tarde",
+                showConfirmButton: false,
+                timer: 1500
+              });;
             usernameInput.disabled = true;
             passwordInput.disabled = true;
         }
@@ -299,36 +329,26 @@ function mostrarCodigo() {
 
     let codigoDescuento = generarCodigoDescuento();
 
-    alert(`Su codigo de descuento es: DESC${codigoDescuento}`)
+    Swal.fire(`Su codigo de descuento es: DESC${codigoDescuento}`);
 
 }
 
 
 
 
-// caja de comentarios
-
-// Función para obtener los comentarios desde localStorage
-function getComments() {
-    return JSON.parse(localStorage.getItem('comments')) || [];
-}
-
-// Función para guardar los comentarios en localStorage
-function saveComment(comment) {
-    let comments = getComments();
-    comments.push(comment);
-    localStorage.setItem('comments', JSON.stringify(comments));
-}
+// Obtener los comentarios del localStorage o inicializar un array vacío
+const comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
 
 // Función para mostrar los comentarios en la página
 function displayComments() {
-    let comments = getComments();
-    let commentsContainer = document.getElementById('comments');
-
+    const commentsContainer = document.getElementById('comments');
     commentsContainer.innerHTML = '';
 
-    comments.forEach(comment => {
-        let commentElement = document.createElement('div');
+    // Ordenar los comentarios alfabéticamente por nombre
+    comentarios.sort((a, b) => a.name.localeCompare(b.name));
+
+    comentarios.forEach(comment => {
+        const commentElement = document.createElement('div');
         commentElement.innerHTML = `${comment.name}: ${comment.text}`;
         commentsContainer.appendChild(commentElement);
     });
@@ -337,25 +357,43 @@ function displayComments() {
 document.addEventListener('DOMContentLoaded', function() {
     displayComments();
 
-    let commentForm = document.getElementById('commentForm');
-    
+    const commentForm = document.getElementById('commentForm');
     commentForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        let name = document.getElementById('name').value;
-        let text = document.getElementById('text').value;
+        const name = document.getElementById('name').value;
+        const text = document.getElementById('text').value;
 
         if (name && text) {
-            let newComment = { name, text };
-            saveComment(newComment);
+            const newComment = { name, text };
+            comentarios.push(newComment);
+
+            // Guardar en el localStorage
+            localStorage.setItem('comentarios', JSON.stringify(comentarios));
+
             displayComments();
 
             document.getElementById('name').value = '';
             document.getElementById('text').value = '';
         } else {
-            alert('Por favor, completa todos los campos para dejar un comentario.');
+            Swal.fire({
+                title: "Por favor completa todos los campos para dejar tu comentario",
+                showClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                  `
+                },
+                hideClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                  `
+                }
+              });;
         }
     });
 });
-
 
