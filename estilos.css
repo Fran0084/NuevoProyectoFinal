@@ -11,7 +11,7 @@
     margin-left: 15px;
 }
 
-.product-image{
+.botellaAgua{
 width: 150px;
 height: 150px;
 margin-top: 25px;
@@ -51,4 +51,11 @@ margin-left: 15px;
 
 .storage{
     margin-bottom: 150px;
+}
+
+
+.cajaDeComentarios{
+margin-bottom: 150px;
+margin-left: 15px;
+
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
     <title>Carrito de Compras</title>
-    
+
 </head>
 
 <body>
@@ -22,6 +22,8 @@
 
 
 
+
+    <!-- FORMULARIO DE REGRISTRO DE USUARIO -->
     <div class="registro">
         <h1>Registro de Usuario</h1>
         <form id="formulario">
@@ -38,38 +40,46 @@
         </form>
     </div>
 
+
+    <!-- LOGGIN USUARIO CON 3 INTENTOS. -->
     <div class="inicioSesion">
         <h1>Inicio Sesion</h1>
-        <input type="text" id="username" placeholder="Nombre de usuario">
-        <input type="password" id="password" placeholder="Contraseña">
+        <input type="text" id="nombreDeUsuario" placeholder="Nombre de usuario">
+        <input type="password" id="contraseñas" placeholder="Contraseña">
         <button onclick="login()">Ingresar</button>
 
     </div>
 
 
+
+    <!-- CARRITO DE COMPRAS PARA BOTELLA DE AGUA -->
     <div class="carrito">
-        <!-- Botón para restar cantidad -->
+
+        <!-- Boton restar cantidad -->
         <button id="restar">-</button>
 
 
-        <!-- Imagen del producto -->
-        <img src="./imagenes/images.jpg" alt="Producto 1" class="product-image">
+        <img src="./imagenes/images.jpg" alt="Producto 1" class="botellaAgua">
 
 
-        <!-- Botón para sumar cantidad -->
+        <!-- Boton sumar cantidad -->
         <button id="sumar">+</button>
 
-
-        <!-- Cantidad actual -->
         <span id="cantidad" class="divSpan">1</span>
 
         <p>Precio:$ <span id="precio-total">10</span></p>
 
-        <!-- Botón para finalizar compra -->
+        <!-- Boton  finalizar compra -->
         <button id="finalizar">Finalizar Compra</button>
 
     </div>
 
+
+
+
+
+
+    <!-- CARRITO DE COMPRAS SELECCION DE PRODUCTOS -->
     <div class="seleccionProductos">
         <h1>Selecciona un producto:</h1>
         <select id="productos">
@@ -80,8 +90,12 @@
         </select>
 
         <div id="infoProducto">
-            <p><strong>Producto:</strong> <span id="nombreProducto"></span></p>
-            <p><strong>Precio:</strong> $<span id="precioProducto"></span></p>
+            <p>Producto:
+                <span id="nombreProducto"></span>
+            </p>
+            <p>Precio:$
+                <span id="precioProducto"></span>
+            </p>
             <button id="agregarCarrito">Agregar al Carrito</button>
         </div>
     </div>
@@ -89,10 +103,9 @@
 
 
 
-
+    <!-- GENERAR UN CODIGO DE DESCUENTO CON LA MATH.RANDOM -->
     <div>
         <button id="generarDescuento">Codigo Descuento</button>
-
     </div>
 
     <br>
@@ -100,15 +113,19 @@
 
 
 
+
+    <!-- CAJA DE COMENTARIOS -->
+    
     <h1>Comentarios</h1>
+    
+    <div class="cajaDeComentarios">
     <form id="commentForm">
         <input type="text" id="name" placeholder="Nombre">
         <input type="text" id="text" placeholder="Comentario">
         <button type="submit">Agregar comentario</button>
     </form>
     <div id="comments"></div>
-
-
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
