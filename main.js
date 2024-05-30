@@ -316,6 +316,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+// Aplicando fetch - Consumo de una api para la web
+
 document.addEventListener('DOMContentLoaded', function() {
     let obtenerDatosButton = document.getElementById('obtenerDatosButton');
     let resultadoDiv = document.getElementById('resultado');
