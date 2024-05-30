@@ -314,3 +314,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    let obtenerDatosButton = document.getElementById('obtenerDatosButton');
+    let resultadoDiv = document.getElementById('resultado');
+
+    obtenerDatosButton.addEventListener('click', async function() {
+        try {
+            let respuesta = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments'); 
+            if (!respuesta.ok) {
+                throw new Error('Error al obtener los datos de la API');
+            }
+            let data = await respuesta.json();
+            resultadoDiv.textContent = JSON.stringify(data, null, 2);
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+    });
+});
